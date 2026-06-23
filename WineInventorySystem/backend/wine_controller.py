@@ -18,3 +18,11 @@ def add_wine(name, description, quantity, price):
         wines = cursor.fetchall()
         conn.close()
         return wines
+    
+    def delete_wine(wine_id):
+        conn = connect_db()
+        cursor = conn.cursor()
+        cursor.execute('DELETE FROM wines WHERE id = ?', (wine_id,))
+        conn.commit()
+        conn.close()
+        
