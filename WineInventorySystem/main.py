@@ -1,4 +1,5 @@
-# Entry point for the Wine Inventory System
+from database.db import create_tables
 
-if __name__ == "__main__":
-    print("Wine Inventory System started")
+create_tables()
+
+print("Database and tables created successfully.")  
