@@ -10,3 +10,11 @@ def add_wine(name, description, quantity, price):
     ''', (name, description, quantity, price))
     conn.commit()
     conn.close()
+    
+    def get_all_wines():
+        conn = connect_db()
+        cursor = conn.cursor()
+        cursor.execute('SELECT * FROM wines')
+        wines = cursor.fetchall()
+        conn.close()
+        return wines
