@@ -1,0 +1,11 @@
+# Python cache files
+__pycache__/
+*.pyc
+
+# Environment folders
+venv/
+.env/
+.venv/
+
+# Database
+*.db

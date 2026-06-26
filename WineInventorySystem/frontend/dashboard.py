@@ -169,3 +169,5 @@ for col in columns:
     tree.column(col, width=200)
 
 tree.pack(fill="both", expand=True)
+
+root.mainloop()
