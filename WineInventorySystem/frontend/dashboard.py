@@ -1,6 +1,17 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 
+from backend.wine_controller import (
+    add_wine,
+    get_all_wines,
+    delete_wine,
+    get_total_stock
+)
+
+from backend.sales_controller import (
+    get_total_sales,
+    get_total_revenue
+)
 
 root = tk.Tk()
 root.title("Wine World Delights")
@@ -63,13 +74,14 @@ tk.Label(
     font=("Segoe UI", 12, "bold")
 ).pack(pady=10)
 
-tk.Label(
+total_wines_label = tk.Label(
     card1,
     text="0",
     bg=CARD,
     fg=WHITE,
     font=("Segoe UI", 30, "bold")
-).pack()
+)
+total_wines_label.pack()
 
 
 card2 = tk.Frame(
@@ -92,14 +104,44 @@ tk.Label(
     font=("Segoe UI", 12, "bold")
 ).pack(pady=10)
 
-tk.Label(
+total_sales_label = tk.Label(
     card2,
     text="0",
     bg=CARD,
     fg=WHITE,
     font=("Segoe UI", 30, "bold")
-).pack()
+)
+total_sales_label.pack()
 
+card3 = tk.Frame(
+    stats_frame,
+    bg=CARD,
+    width=250,
+    height=130,
+    highlightbackground=GOLD,
+    highlightthickness=2
+)
+
+card3.grid(row=0, column=2, padx=20)
+card3.pack_propagate(False)
+
+tk.Label(
+    card3,
+    text="REVENUE",
+    bg=CARD,
+    fg=GOLD,
+    font=("Segoe UI", 12, "bold")
+).pack(pady=10)
+
+revenue_label = tk.Label(
+    card3,
+    text="0",
+    bg=CARD,
+    fg=WHITE,
+    font=("Segoe UI", 24, "bold")
+)
+
+revenue_label.pack()
 
 form_frame = tk.Frame(
     root,
@@ -170,4 +212,25 @@ for col in columns:
 
 tree.pack(fill="both", expand=True)
 
+def refresh_dashboard():
+
+    total_wines_label.config(
+        text=str(get_total_stock())
+    )
+
+    total_sales_label.config(
+        text=str(get_total_sales())
+    )
+
+    revenue_label.config(
+        text=f"KES {get_total_revenue():,.0f}"
+    )
+
+    tree.delete(*tree.get_children())
+
+    for wine in get_all_wines():
+        tree.insert("", "end", values=wine)
+
+    root.after(3000, refresh_dashboard)
+    refresh_dashboard()
 root.mainloop()
