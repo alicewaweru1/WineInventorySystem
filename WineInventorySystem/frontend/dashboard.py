@@ -15,7 +15,7 @@ from backend.sales_controller import (
 
 root = tk.Tk()
 root.title("Wine World Delights")
-root.geometry("1400x800")
+root.state("zoomed")
 root.configure(bg="#0f0f0f")
 
 
@@ -143,6 +143,37 @@ revenue_label = tk.Label(
 
 revenue_label.pack()
 
+analytics_card = tk.Frame(
+    root,
+    bg=CARD,
+    highlightbackground=GOLD,
+    highlightthickness=2
+)
+
+analytics_card.pack(
+    fill="x",
+    padx=30,
+    pady=10
+)
+
+tk.Label(
+    analytics_card,
+    text="📈 Revenue Analytics",
+    bg=CARD,
+    fg=GOLD,
+    font=("Georgia", 16, "bold")
+).pack(pady=15)
+
+analytics_label = tk.Label(
+    analytics_card,
+    text="KES 0",
+    bg=CARD,
+    fg="white",
+    font=("Segoe UI", 24, "bold")
+)
+
+analytics_label.pack(pady=10)
+
 form_frame = tk.Frame(
     root,
     bg=CARD,
@@ -198,7 +229,30 @@ columns = (
     "Price",
     "Quantity"
 )
+style = ttk.Style()
 
+style.theme_use("clam")
+
+style.configure(
+    "Treeview",
+    background="#1b1b1b",
+    foreground="white",
+    fieldbackground="#1b1b1b",
+    rowheight=35,
+    font=("Segoe UI", 10)
+)
+
+style.configure(
+    "Treeview.Heading",
+    background=GOLD,
+    foreground="black",
+    font=("Segoe UI", 11, "bold")
+)
+
+style.map(
+    "Treeview",
+    background=[("selected", WINE_RED)]
+)
 tree = ttk.Treeview(
     table_frame,
     columns=columns,
@@ -211,6 +265,50 @@ for col in columns:
     tree.column(col, width=200)
 
 tree.pack(fill="both", expand=True)
+style = ttk.Style()
+
+style.theme_use("clam")
+
+style.configure(
+    "Treeview",
+    background="#1b1b1b",
+    foreground="white",
+    fieldbackground="#1b1b1b",
+    rowheight=35,
+    font=("Segoe UI", 10)
+)
+
+style.configure(
+    "Treeview.Heading",
+    background=GOLD,
+    foreground="black",
+    font=("Segoe UI", 11, "bold")
+)
+
+style.map(
+    "Treeview",
+    background=[("selected", WINE_RED)]
+)
+
+search_frame = tk.Frame(root, bg=BLACK)
+search_frame.pack(fill="x", padx=30)
+
+tk.Label(
+    search_frame,
+    text="🔎 Search Wine",
+    bg=BLACK,
+    fg=GOLD,
+    font=("Segoe UI", 12, "bold")
+).pack(side="left", padx=10)
+
+search_entry = tk.Entry(
+    search_frame,
+    font=("Segoe UI", 12),
+    width=40
+)
+
+search_entry.pack(side="left", padx=10)
+
 
 def refresh_dashboard():
 
