@@ -144,3 +144,28 @@ save_btn = tk.Button(
 )
 
 save_btn.grid(row=5, column=0, columnspan=2, pady=20)
+
+
+table_frame = tk.Frame(root, bg=BLACK)
+table_frame.pack(fill="both", expand=True, padx=30, pady=20)
+
+columns = (
+    "ID",
+    "Name",
+    "Description",
+    "Price",
+    "Quantity"
+)
+
+tree = ttk.Treeview(
+    table_frame,
+    columns=columns,
+    show="headings",
+    height=12
+)
+
+for col in columns:
+    tree.heading(col, text=col)
+    tree.column(col, width=200)
+
+tree.pack(fill="both", expand=True)
