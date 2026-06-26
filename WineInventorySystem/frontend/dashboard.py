@@ -99,3 +99,48 @@ tk.Label(
     fg=WHITE,
     font=("Segoe UI", 30, "bold")
 ).pack()
+
+
+form_frame = tk.Frame(
+    root,
+    bg=CARD,
+    highlightbackground=GOLD,
+    highlightthickness=2
+)
+
+form_frame.pack(fill="x", padx=30, pady=20)
+
+tk.Label(
+    form_frame,
+    text="Add New Wine",
+    font=("Georgia", 18, "bold"),
+    fg=GOLD,
+    bg=CARD
+).grid(row=0, column=0, columnspan=2, pady=15)
+
+tk.Label(form_frame, text="Wine Name", fg=WHITE, bg=CARD).grid(row=1, column=0, padx=10, pady=10)
+wine_name = tk.Entry(form_frame, width=35)
+wine_name.grid(row=1, column=1)
+
+tk.Label(form_frame, text="Description", fg=WHITE, bg=CARD).grid(row=2, column=0, padx=10, pady=10)
+description = tk.Entry(form_frame, width=35)
+description.grid(row=2, column=1)
+
+tk.Label(form_frame, text="Price", fg=WHITE, bg=CARD).grid(row=3, column=0, padx=10, pady=10)
+price = tk.Entry(form_frame, width=35)
+price.grid(row=3, column=1)
+
+tk.Label(form_frame, text="Quantity", fg=WHITE, bg=CARD).grid(row=4, column=0, padx=10, pady=10)
+quantity = tk.Entry(form_frame, width=35)
+quantity.grid(row=4, column=1)
+
+save_btn = tk.Button(
+    form_frame,
+    text="🍷 SAVE WINE",
+    bg=GOLD,
+    fg="black",
+    font=("Segoe UI", 11, "bold"),
+    width=20
+)
+
+save_btn.grid(row=5, column=0, columnspan=2, pady=20)
